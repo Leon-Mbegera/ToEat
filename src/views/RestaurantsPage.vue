@@ -26,6 +26,8 @@ const restaurantList = ref<Restaurant[]>([
     address: '529 Letsgofora Dr.',
     website: 'www.tamagoneverdies.com',
     status: 'Recommended',
+    diet: "Vegetarian"
+
   },
   {
     id: '9b361dae-2d44-4499-9940-97e188d41a32',
