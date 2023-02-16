@@ -1,8 +1,10 @@
 <script setup lang="ts">
 
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { v4 as uuidv4 } from 'uuid'
 import type { Dish } from '@/types'
+
+const elNameInput = ref<HTMLLIElement | null>(null)
 
 const newDish = ref<Dish>({
   id: uuidv4(),
@@ -16,6 +18,9 @@ const emits = defineEmits<{
   (e: 'cancel-new-dish'): void
 }>()
 
+onMounted(() => {
+  if (elNameInput.value) elNameInput.value.focus()
+})
 
 </script>
 

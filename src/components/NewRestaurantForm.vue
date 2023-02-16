@@ -1,18 +1,30 @@
-<script>
-import { v4 as uuidv4 } from 'uuid'
+<script setup lang="ts" >
 
-export default {
-  emits: ['add-new-restaurant', 'cancel-new-restaurant'],
-  data: () => ({
-    newRestaurant: {
-      id: uuidv4(),
-      name: '',
-      address: '',
-      website: '',
-      status: 'Want to Try',
-    },
-  }),
-}
+import { ref, onMounted } from 'vue'
+import { v4 as uuidv4 } from 'uuid'
+import type { Restaurant } from '@/types'
+import { restaurantStatusList } from '@/constants';
+
+
+const elNameInput = ref<HTMLInputElement | null>(null)
+
+const newRestaurant = ref<Restaurant>({
+  id: uuidv4(),
+  name: '',
+  address: '',
+  website: '',
+  status: 'Want to Try',
+})
+
+const emits = defineEmits<{
+  (e: 'add-new-restaurant', newRestaurant: Restaurant): void
+  (e: 'cancel-new-restaurant'): void
+}>()
+
+onMounted(() => {
+  elNameInput.value?.focus()
+})
+
 </script>
 
 <template>
@@ -21,15 +33,8 @@ export default {
       <div class="field">
         <label for="name" class="label">Name</label>
         <div class="control">
-          <input
-            :value="newRestaurant.name"
-            @keyup.space="updateName"
-            type="text"
-            class="input is-large"
-            placeholder="Beignet and the Jets"
-            required
-            ref="elNameInput"
-          />
+          <input :value="newRestaurant.name" @keyup.space="updateName" type="text" class="input is-large"
+            placeholder="Beignet and the Jets" required ref="elNameInput" />
         </div>
       </div>
       <div class="field">
@@ -50,12 +55,12 @@ export default {
       </div>
       <div class="field">
         <div class="buttons">
-          <button @click="$emit('add-new-restaurant', newRestaurant)" class="button is-success">Create</button>
-          <button @click="$emit('cancel-new-restaurant')" class="button is-light">Cancel</button>
+          <button @click="emits('add-new-restaurant', newRestaurant)" class="button is-success">Create</button>
+          <button @click="emits('cancel-new-restaurant')" class="button is-light">Cancel</button>
         </div>
       </div>
     </div>
-  </form>
+</form>
 </template>
 
 <style></style>

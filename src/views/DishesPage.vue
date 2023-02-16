@@ -42,6 +42,12 @@ const filteredDishList = computed((): Dish[] => {
   })
 })
 
+const filterDishes = (event: KeyboardEvent) => {
+  if (event.code === 'Enter') {
+    filterText.value = (event.target as HTMLInputElement).value
+  }
+}
+
 const numberOfDishes = computed((): number => {
   return filteredDishList.value.length
 })
@@ -96,7 +102,7 @@ onMounted(() => {
             <div class="level-item is-hidden-tablet-only">
               <div class="field has-addons">
                 <p class="control">
-                  <input class="input" type="text" placeholder="Dish name" v-model="filterText" />
+                  <input class="input" type="text" placeholder="Dish name" :value="filterText" @keyup="filterDishes" />
                 </p>
                 <p class="control">
                   <button class="button">Search</button>
@@ -117,9 +123,7 @@ onMounted(() => {
         </div>
       </div>
     </div>
-  </main>
+</main>
 </template>
 
-<style>
-
-</style>
+<style></style>
