@@ -49,6 +49,10 @@ const filteredRestaurantList = computed((): Restaurant[] => {
   })
 })
 
+const updateRestaurantFilter = (event: KeyboardEvent): void => {
+  filterText.value = (event.target as HTMLInputElement).value
+}
+
 const numberOfRestaurants = computed((): number => {
   return filteredRestaurantList.value.length
 })
@@ -104,7 +108,8 @@ onMounted(() => {
             <div class="level-item is-hidden-tablet-only">
               <div class="field has-addons">
                 <p class="control">
-                  <input class="input" type="text" placeholder="Restaurant name" v-model="filterText" />
+                  <input class="input" type="text" placeholder="Restaurant name" :value="filterText"
+                    @keyup.enter="updateRestaurantFilter" />
                 </p>
                 <p class="control">
                   <button class="button">Search</button>
@@ -125,9 +130,7 @@ onMounted(() => {
         </div>
       </div>
     </div>
-  </main>
+</main>
 </template>
 
-<style>
-
-</style>
+<style></style>
