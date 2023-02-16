@@ -33,7 +33,7 @@ onMounted(() => {
       <div class="field">
         <label for="name" class="label">Name</label>
         <div class="control">
-          <input :value="newRestaurant.name" type="text" class="input is-large" placeholder="Beignet and the Jets"
+          <input v-model="newRestaurant.name" type="text" class="input is-large" placeholder="Beignet and the Jets"
             required ref="elNameInput" />
         </div>
       </div>
