@@ -3,7 +3,7 @@
     <div class="content has-text-centered">
       <p>
         Built with <a href="https://vuejs.org/">Vue</a> and <a href="https://bulma.io/">Bulma</a> by
-        <a href="https://www.bencodezen.io">Leon</a>. <br /><a
+        <a href="https://www.bencodezen.io">Leon Mbegera</a>. <br /><a
           href="https://github.com/bencodezen/typescript-and-vue-workshop">Source Code</a>
       </p>
     </div>
